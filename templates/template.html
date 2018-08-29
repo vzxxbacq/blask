@@ -1,93 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{tittle}}</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}" />
-    <link rel="stylesheet" href="{{url_for('static', filename='highlitght.css')}}" />
-    <link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.png')}}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title> {{ tittle }}</title>
 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='highlitght.css')}}" />
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css')}}">
+
+    <!-- Swiper CSS
+    <link rel="stylesheet" href="{{url_for('static', filename='swiper.min.css')}}">-->
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 </head>
 <body>
-
-    <header>
-        <div class="container container-fluid">
-            <h1><a href="/">Blask</a></h1>
-            <p class="lead">A Simple Blogging Engine Using Flask and MarkDown</p>
-        </div>
-    </header>
-    <div class="container container-fluid" id="content">
-        <div class="row">
-        <div class="col-md-9">
-            <div class="meta">
-                {% if  date %}
-                    <small class="date">Published on: {{date}}</small><br/>
-                {% endif %}
-
-                {% if author %}
-                <small class="author">Published by <a href="/author/{{author}}">{{author}}</a></small>
-                {% endif %}
-            </div>
-
-
-            {{content|safe}}
-
-            <div class="meta">
-                {% if category %}
-                    <small class="category">
-                        Category: <a href="/category/{{category}}">{{category}}</a>
-                    </small><br/>
-                {% endif %}
-
-                {% if tags %}
-                    <small class="tags">
-                        {% for tag in tags %}
-                            <a href="/tag/{{tag}}">{{tag}}</a>
-                        {% endfor %}
-                    </small>
-                {% endif %}
-            </div>
-        </div>
-        <aside class="col-md-3">
-            <div class="aside-block">
-                <form method="POST" action="/search">
-                    <div class="input-group mb-2">
-                     <input type="text" name="search" class="form-control" id="inlineFormInputGroup" placeholder="Search" />
-                     </div>
-                </form>
-            </div>
-            <div class="aside-block">
-                <h3>Table of Contents</h3>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/install">Install</a></li>
-                    <li><a href="/examples">Examples</a></li>
-                    <li><a href="/docs">Docs</a></li>
-                    <li><a href="http://github.com/zerasul/blask" target="_blank">Contribute</a></li>
-                    <li><a href="/contact">Contact</a></li>
+<div class="top-header-bar">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 flex align-items-center">
+            <div class="header-bar-text d-none d-lg-block">
+                <p>Hello world, here's VZXXBACQ's blog</p>
+            </div><!-- .header-bar-text -->
+            <div class="header-bar-email d-none d-lg-block">
+                <a href="mailto:fhq981014@gmail.com">fhq981014@gmail.com</a>
+            </div><!-- .header-bar-email -->
+        </div><!-- .col -->
+        <!-- 社交媒体图标-->
+        <div class="col-12 col-lg-6 flex justify-content-between justify-content-lg-end align-items-center">
+            <div class="header-bar-social d-none d-md-block">
+                <ul class="flex align-items-center">
+                    <li><a href="https://www.github.com/vzxxbacq" target="_blank"><i class="fa fa-github"></i></a></li>
+                    <li><a href="https://twitter.com/vzxxbacq_fhq" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://www.zhihu.com/people/yolo-85-65/activities" target="_blank"><i class="fa fa-quora"></i></a></li>
+                    <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
-
             </div>
-            <div id="flask-powered">
-                <a class="github-button" href="https://github.com/zerasul/blask" data-size="large" data-show-count="true" aria-label="Star zerasul/blask on GitHub">Star</a>
-                <a href="http://flask.pocoo.org/"><img
-                    src="http://flask.pocoo.org/static/badges/flask-powered.png"
-                    border="0"
-                    alt="Flask powered"
-                    title="Flask powered"></a>
+            <!-- .header-bar-social -->
+            <!-- 搜索 -->
+            <div class="header-bar-search d-none d-md-block">
+                <form>
+                    <input type="search" placeholder="Search">
+                </form>
+            </div><!-- .header-bar-search -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+</div><!-- .container-fluid -->
+</div><!-- .top-header-bar -->
+<div class="outer-container">
+    <header class="site-header">
 
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-branding flex flex-column align-items-center">
+                        <h1 class="site-title"><a href="index.html" rel="home">FHQ's</a></h1>
+                        <p class="site-description">Personal Blog</p>
+                    </div><!-- .site-branding -->
+
+                    <nav class="site-navigation">
+                        <div class="hamburger-menu d-lg-none">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div><!-- .hamburger-menu -->
+
+                        <ul class="flex-lg flex-lg-row justify-content-lg-center align-content-lg-center">
+                            <li class="current-menu-item"><a href="index.html">Home</a></li>
+                            <li><a href="#">features</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">blog</a></li>
+                            <li><a href="#">about me</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+
+                        <div class="header-bar-social d-md-none">
+                            <ul class="flex justify-content-center align-items-center">
+                                <li><a href="https://www.github.com/vzxxbacq" target="_blank"><i class="fa fa-github"></i></a></li>
+                                <li><a href="https://twitter.com/vzxxbacq_fhq" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.zhihu.com/people/yolo-85-65/activities" target="_blank"><i class="fa fa-quora"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div><!-- .header-bar-social -->
+
+                        <div class="header-bar-search d-md-none">
+                            <form>
+                                <input type="search" placeholder="Search">
+                            </form>
+                        </div><!-- .header-bar-search -->
+                    </nav><!-- .site-navigation -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </header><!-- .site-header -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- 画廊
+                <div class="swiper-container hero-slider">
+
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <div class="hero-content flex justify-content-center align-items-center flex-column">
+                                <img src="images/slider.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="hero-content flex justify-content-center align-items-center flex-column">
+                                <img src="images/slider.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <!-- Add Pagination -->
+                    <!-- <div class="swiper-pagination"></div>
+                    <!-- 滑动按钮
+                        <div class="swiper-button-next flex justify-content-center align-items-center">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44"><path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z"></path></svg></span>
+                        </div>
+                        <div class="swiper-button-prev flex justify-content-center align-items-center">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44"><path d="M0,22L22,0l2.1,2.1L4.2,22l19.9,19.9L22,44L0,22L0,22L0,22z"></path></svg></span>
+                        </div>
+                    </div>
+                -->
+                <!-- .swiper-container -->
+            </div><!-- .col -->
+        </div><!-- .row -->
+        <!-- 头像
+        <div class="container">
+            <div class="row">
+                <div class="offset-lg-9 col-12 col-lg-3">
+                    <a href="#">
+                        <div class="yt-subscribe">
+                            <img src="images/yt-subscribe.png" alt="Youtube Subscribe">
+                            <h3>Subscribe</h3>
+                            <p>To my Youtube Channel</p>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </aside>
         </div>
+        -->
     </div>
 
-    <footer>&copy; 2018 - All rights reserved - v0.1.0-beta - Made with Blask.</footer>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <div class="container single-page">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <div class="content-wrap">
+                    <!-- .entry-header -->
+                    <header class="entry-header">
+                        <!-- .posted-date -->
+                        {% if date %}
+                            <div class="posted-date">
+                                {{ date }}
+                            </div>
+                        {% endif %}
+
+                        <!-- title -->
+                        <h2 class="entry-title"> {{ title }} </h2>
+
+                        <!-- .tags-links -->
+                        {% if category %}
+                            <div class="tags-links">
+                                Category: <a href="/category/{{category}}">{{ category }}</a>
+                            </div>
+                        {% endif %}
+                    </header>
+
+                    <!--
+                    <figure class="featured-image">
+                        <img src="images/1.jpg" alt="">
+                    </figure> .featured-image -->
+
+                    <!-- Abstract -->
+                    <div class="entry-content">
+                        <p> {{ content|safe }} </p>
+                    </div>
+
+                    <!-- article footer -->
+                    <footer class="entry-footer flex flex-column flex-lg-row justify-content-between align-content-start align-lg-items-center">
+                        <ul class="post-share flex align-items-center order-3 order-lg-1">
+                            <label>Share</label>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        </ul><!-- .post-share -->
+
+                        <a class="read-more order-2" href="#">Read more</a>
+
+                        {% if comment %}
+                        <!-- .comments-count -->
+                        <div class="comments-count order-1 order-lg-3">
+                            <a href="#">2 Comments</a>
+                        </div>
+                        {% endif %}
+                    </footer><!-- .entry-footer -->
+                </div><!-- .content-wrap -->
+
+                <!-- Pages -->
+                <div class="pagination">
+                    <ul class="flex align-items-center">
+                        <li class="active"><a href="#">01.</a></li>
+                        <li><a href="#">02.</a></li>
+                        <li><a href="#">03.</a></li>
+                    </ul>
+                </div>
+            </div><!-- .col -->
+
+            <div class="col-12 col-lg-3">
+                <div class="sidebar">
+                    <!--
+                    <div class="about-me">
+                        <h2>I’m Amelia Smith</h2>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tincidunt mi. Nullam vel orci dui. Suspendisse sit amet laoreet neque. Fusce sagittis suscipit sem a consequat. Proin nec interdum sem. Quisque in porttitor magna.</p>
+                    </div>.about-me -->
+                    <!-- tags -->
+                    <div class="tags-list">
+                        <a href="#">Music</a>
+                        <a href="#">Love</a>
+                        <a href="#">Car</a>
+                        <a href="#">Stories</a>
+                        <a href="#">Photography</a>
+                        <a href="#">Music</a>
+                        <a href="#">Car</a>
+                    </div><!-- .tags-list -->
+                </div><!-- .sidebar -->
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- .outer-container -->
+
+<footer class="sit-footer">
+
+    <!-- legal stuff -->
+    <div class="footer-bar">
+        <div class="outer-container">
+            <div class="container-fluid">
+                <div class="row justify-content-between">
+                    <div class="col-12 col-md-6">
+                        <div class="footer-copyright">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div><!-- .footer-copyright -->
+                    </div><!-- .col-xl-4 -->
+
+                    <div class="col-12 col-md-6">
+                        <div class="footer-social">
+                            <ul class="flex justify-content-center justify-content-md-end align-items-center">
+                                <li><a href="https://www.github.com/vzxxbacq" target="_blank"><i class="fa fa-github"></i></a></li>
+                                <li><a href="https://twitter.com/vzxxbacq_fhq" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.zhihu.com/people/yolo-85-65/activities" target="_blank"><i class="fa fa-quora"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div><!-- .footer-social -->
+                    </div><!-- .col-xl-4 -->
+                </div><!-- .row -->
+            </div><!-- .container-fluid -->
+        </div><!-- .outer-container -->
+    </div><!-- .footer-bar -->
+</footer><!-- .sit-footer -->
+{% block javascript %}
+<script type='text/javascript' src="{{url_for('static', filename='js/jquery.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/swiper.min.js')}}"></script>
+<script type='text/javascript' src="{{url_for('static', filename='js/custom.js')}}"></script>
+
+{% endblock %}
 </body>
 </html>

@@ -15,7 +15,7 @@ staticDir = getcwd()+"/static"
 """
 Default name of the static Folder
 """
-tittle = "Blask | A Simple Blog Engine Based on Flask"
+tittle = "VZXXBACQ"
 """
 Title of the blog
 """
